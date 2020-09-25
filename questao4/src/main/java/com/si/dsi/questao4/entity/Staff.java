@@ -1,9 +1,15 @@
 package com.si.dsi.questao4.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Staff {
@@ -13,9 +19,16 @@ private static final long serialVersionUID = 2030811428002140437L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idStaff;
-	private Integer staffType;
 	private String forename;
 	private String surname;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_type")
+	private StaffTypes type;
+	
+	@OneToMany
+	@JoinColumn(name = "id_staff")
+	private List<Care> cares;
 	
 	public Integer getIdStaff() {
 		return idStaff;
@@ -23,14 +36,6 @@ private static final long serialVersionUID = 2030811428002140437L;
 	
 	public void setIdStaff(Integer idStaff) {
 		this.idStaff = idStaff;
-	}
-	
-	public Integer getStaffType() {
-		return staffType;
-	}
-	
-	public void setStaffType(Integer staffType) {
-		this.staffType = staffType;
 	}
 	
 	public String getForename() {

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Care implements Serializable {
@@ -15,8 +17,10 @@ public class Care implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idCare;
-	private Integer idStaff;
-	private Integer idSupportedPeople;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_suportted_people")
+	private SupportedPeople people;
 	
 	public Integer getIdCare() {
 		return idCare;
@@ -26,21 +30,4 @@ public class Care implements Serializable {
 		this.idCare = idCare;
 	}
 	
-	public Integer getIdStaff() {
-		return idStaff;
-	}
-	
-	public void setIdStaff(Integer idStaff) {
-		this.idStaff = idStaff;
-	}
-	
-	public Integer getIdSupportedPeople() {
-		return idSupportedPeople;
-	}
-	
-	public void setIdSupportedPeople(Integer idSupportedPeople) {
-		this.idSupportedPeople = idSupportedPeople;
-	}
-	
-
 }
